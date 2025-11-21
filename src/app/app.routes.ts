@@ -1,3 +1,15 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { peopleRoutes } from '@features/people/people.routes';
+
+export const routes: Routes = [
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'people',
+    },
+    {
+        path: 'people',
+        children: peopleRoutes,
+    },
+];

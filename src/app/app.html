@@ -1,3 +1,11 @@
-<tui-root>
-    <router-outlet />
+<tui-root class="app">
+    <header class="app_header"></header>
+
+    <div class="app_page">
+        <sw-sidebar class="app_sidebar" [config]="[]" />
+
+        <div class="app_content">
+            <router-outlet />
+        </div>
+    </div>
 </tui-root>
