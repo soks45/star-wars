@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-    selector: 'sw-feature-b',
+    selector: 'sw-people-table',
     imports: [],
-    templateUrl: './feature-b.html',
-    styleUrl: './feature-b.scss',
+    templateUrl: './people-table.html',
+    styleUrl: './people-table.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeatureB {}
+export class PeopleTable {}

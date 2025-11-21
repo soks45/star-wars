@@ -1,0 +1,11 @@
+<search tuiSearch>
+    <form [formGroup]="form" (ngSubmit)="search()">
+        <fieldset tuiTextfieldSize="m">
+            <tui-textfield iconStart="@tui.search">
+                <label tuiLabel>Имя персонажа</label>
+                <input [formControl]="form.controls.name" tuiTextfield />
+            </tui-textfield>
+            <button size="m" tuiButton type="submit">Найти</button>
+        </fieldset>
+    </form>
+</search>
