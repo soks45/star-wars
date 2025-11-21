@@ -1,6 +1,26 @@
 :host {
     display: flex;
     flex-direction: column;
-    text-align: center;
     background: var(--tui-background-base);
+}
+
+.sidebar {
+    padding-block-start: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    &_link {
+        padding: 0.75rem 1.75rem;
+        font: var(--tui-font-text-m);
+        display: block;
+        color: var(--tui-font-color-m);
+
+        &:hover {
+            background-color: var(--tui-background-neutral-1-hover);
+        }
+
+        &-active {
+            background-color: var(--tui-background-base-alt);
+        }
+    }
 }

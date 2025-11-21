@@ -1,8 +1,8 @@
 <tui-root class="app">
-    <header class="app_header"></header>
+    <sw-header></sw-header>
 
     <div class="app_page">
-        <sw-sidebar class="app_sidebar" [config]="[]" />
+        <sw-sidebar class="app_sidebar" [config]="sidebarConfig" />
 
         <div class="app_content">
             <router-outlet />

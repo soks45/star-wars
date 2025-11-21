@@ -3,13 +3,30 @@ import { RouterOutlet } from '@angular/router';
 
 import { TuiRoot } from '@taiga-ui/core';
 
-import { Sidebar } from '@shared/components/sidebar/sidebar';
+import { Header } from '@shared/components/header/header';
+import { Sidebar, SidebarItem } from '@shared/components/sidebar/sidebar';
 
 @Component({
     selector: 'sw-root',
-    imports: [RouterOutlet, TuiRoot, Sidebar],
+    imports: [RouterOutlet, TuiRoot, Sidebar, Header],
     templateUrl: './app.html',
     styleUrl: './app.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {}
+export class App {
+    protected readonly sidebarConfig: SidebarItem[] = [
+        {
+            label: 'Персонажи',
+            link: '/people',
+        },
+        {
+            label: 'Фича A',
+            link: '/feature-a',
+        },
+        {
+            label: 'Фича B',
+            link: '/feature-b',
+            icon: '@tui.chart-spline',
+        },
+    ];
+}

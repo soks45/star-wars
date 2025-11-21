@@ -12,4 +12,12 @@ export const routes: Routes = [
         path: 'people',
         children: peopleRoutes,
     },
+    {
+        path: 'feature-a',
+        loadComponent: () => import('./features/feature-a/feature-a').then((c) => c.FeatureA),
+    },
+    {
+        path: 'feature-b',
+        loadComponent: () => import('./features/feature-b/feature-b').then((c) => c.FeatureB),
+    },
 ];

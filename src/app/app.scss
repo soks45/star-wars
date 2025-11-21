@@ -1,22 +1,4 @@
 .app {
-    &_header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        display: flex;
-        block-size: 4.125rem;
-        align-items: center;
-        padding: 0 1.25rem;
-        background: var(--tui-background-base);
-        border-block-end: 1px solid var(--tui-border-normal);
-        background: color-mix(in srgb, var(--tui-background-base), transparent 50%);
-        -webkit-backdrop-filter: blur(1.25rem);
-        backdrop-filter: blur(1.25rem);
-        box-shadow: var(--tui-shadow-small);
-    }
-
     &_page {
         padding-block-start: 4rem;
     }
