@@ -6,8 +6,7 @@
             "parser": "@typescript-eslint/parser",
             "files": ["*.ts"],
             "parserOptions": {
-                "project": ["tsconfig.app.json"],
-                "createDefaultProgram": true
+                "project": ["tsconfig.app.json"]
             },
             "extends": [
                 "plugin:@angular-eslint/recommended",
@@ -57,8 +56,7 @@
             "parser": "@typescript-eslint/parser",
             "files": ["*.ts"],
             "parserOptions": {
-                "project": ["tsconfig.app.json"],
-                "createDefaultProgram": true
+                "project": ["tsconfig.app.json"]
             },
             "plugins": ["unused-imports"],
             "rules": {
@@ -102,6 +100,54 @@
                 "import/newline-after-import": "error",
                 "import/first": "error",
                 "import/no-duplicates": "error"
+            }
+        },
+        {
+            "parser": "@typescript-eslint/parser",
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": ["tsconfig.app.json"]
+            },
+            "plugins": ["boundaries"],
+            "settings": {
+                "import/resolver": {
+                    "typescript": {
+                        "alwaysTryTypes": true,
+                        "project": "tsconfig.app.json"
+                    }
+                },
+                "boundaries/base-path": "src/app",
+                "boundaries/elements": [
+                    { "type": "core", "pattern": "core/*" },
+                    { "type": "repository", "pattern": "repositories/*", "capture": ["repositoryName"] },
+                    { "type": "shared", "pattern": "shared/*" },
+                    { "type": "feature", "pattern": "features/*", "capture": ["featureName"] }
+                ]
+            },
+            "rules": {
+                "boundaries/element-types": [
+                    2,
+                    {
+                        "default": "disallow",
+                        "rules": [
+                            { "from": "core", "allow": ["core"] },
+                            {
+                                "from": "repository",
+                                "allow": [["repository", { "repositoryName": "${from.repositoryName}" }], "core"]
+                            },
+                            { "from": "shared", "allow": ["shared", "repository", "core"] },
+                            {
+                                "from": "feature",
+                                "allow": [
+                                    ["feature", { "featureName": "${from.featureName}" }],
+                                    "shared",
+                                    ["repository", { "repositoryName": "\"${from.featureName}" }],
+                                    "core"
+                                ]
+                            }
+                        ]
+                    }
+                ]
             }
         }
     ]
