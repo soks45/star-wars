@@ -10,7 +10,8 @@
         "__lint__": "",
         "lint": "eslint \"**/*.{js,ts,html}\" --quiet --fix",
         "format": "prettier \"**/*.{js,ts,html,css,scss,json}\" --write",
-        "lint-format": "npm run format && npm run lint"
+        "lint-format": "npm run format && npm run lint",
+        "commitlint": "commitlint --edit"
     },
     "lint-staged": {
         "*.{ts,js,html}": [
