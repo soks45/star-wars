@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+import { TuiRoot } from '@taiga-ui/core';
+
 @Component({
     selector: 'sw-root',
-    imports: [RouterOutlet],
+    imports: [RouterOutlet, TuiRoot],
     templateUrl: './app.html',
     styleUrl: './app.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
