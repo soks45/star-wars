@@ -6,3 +6,4 @@ e2e/**
 .angular
 .vscode
 node_modules
+commitlint.config.js
