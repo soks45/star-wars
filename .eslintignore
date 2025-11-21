@@ -1,0 +1,8 @@
+package.json
+package-lock.json
+dist
+e2e/**
+.idea
+.angular
+.vscode
+node_modules
