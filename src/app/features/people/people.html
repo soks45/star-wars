@@ -25,6 +25,7 @@
         class="people_pagination"
         [page]="(page$ | async) || 1"
         [total]="(totalPages$ | async) || 0"
+        [disabled]="(isLoading$ | async)"
         (pageChange)="pageChange($event)"
     ></sw-people-pagination>
 </div>

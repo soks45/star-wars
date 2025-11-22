@@ -1,8 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 import { TuiButton } from '@taiga-ui/core';
 import { TuiBlockStatus } from '@taiga-ui/layout';
+
+import { NullableBoolean } from '@core/types/nullable';
 
 @Component({
     selector: 'sw-people-empty-block-placeholder',
@@ -10,7 +12,13 @@ import { TuiBlockStatus } from '@taiga-ui/layout';
     templateUrl: './people-empty-block-placeholder.html',
     styleUrl: './people-empty-block-placeholder.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '[class.disabled]': 'disabled()',
+    },
 })
 export class PeopleEmptyBlockPlaceholder {
+    readonly disabled = input<boolean, NullableBoolean>(false, {
+        transform: booleanAttribute,
+    });
     readonly resetSearchParams = output();
 }

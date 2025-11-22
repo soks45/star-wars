@@ -5,7 +5,7 @@
                 <label tuiLabel>Имя персонажа</label>
                 <input [formControl]="form.controls.name" tuiTextfield />
             </tui-textfield>
-            <button size="m" tuiButton type="submit">Найти</button>
+            <button size="m" tuiButton type="submit" [disabled]="disabled()">Найти</button>
         </fieldset>
     </form>
 </search>

@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, effect, model } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, effect, input, model } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { TuiButton, TuiTextfield } from '@taiga-ui/core';
 import { TuiSearch } from '@taiga-ui/layout';
 
-import { NullableString } from '@core/types/nullable';
+import { NullableBoolean, NullableString } from '@core/types/nullable';
 
 export type PeopleSearchFormControls = {
     name: FormControl<NullableString>;
@@ -18,6 +18,9 @@ export type PeopleSearchFormControls = {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PeopleSearch {
+    readonly disabled = input<boolean, NullableBoolean>(false, {
+        transform: booleanAttribute,
+    });
     readonly name = model.required<NullableString>();
 
     protected readonly form = new FormGroup<PeopleSearchFormControls>({
