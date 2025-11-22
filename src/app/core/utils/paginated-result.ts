@@ -1,16 +1,15 @@
-import { Nullable } from '@core/types/nullable';
-import { UrlString } from '@core/types/url-string';
-
 export class PaginatedResult<T> {
     readonly totalPages: number;
 
     constructor(
         readonly count: number,
-        readonly nextURL: Nullable<UrlString>,
-        readonly previousURL: Nullable<UrlString>,
-        readonly results: T[],
-        readonly pageSize: number
+        readonly pageSize: number,
+        readonly results: T[]
     ) {
-        this.totalPages = this.results.length ? Math.ceil(count / this.results.length) : 0;
+        this.totalPages = this.results.length ? Math.ceil(count / this.pageSize) : 0;
+    }
+
+    static empty<T>(pageSize = 0): PaginatedResult<T> {
+        return new PaginatedResult<T>(0, pageSize, []);
     }
 }

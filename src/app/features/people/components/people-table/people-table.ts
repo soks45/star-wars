@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+import { PeoplePerson } from '@repositories/people';
 
 @Component({
     selector: 'sw-people-table',
@@ -7,4 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrl: './people-table.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PeopleTable {}
+export class PeopleTable {
+    readonly people = input.required<PeoplePerson[]>();
+}

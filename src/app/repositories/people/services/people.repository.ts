@@ -4,8 +4,6 @@ import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { API_URL } from '@core/providers/api-url';
-import { Nullable } from '@core/types/nullable';
-import { UrlString } from '@core/types/url-string';
 import { PaginatedResult } from '@core/utils/paginated-result';
 import { PeoplePerson } from '@repositories/people';
 import { PaginatedResultDto } from '@repositories/people/dtos/paginated-result.dto';
@@ -19,7 +17,7 @@ export class PeopleRepository {
     private readonly http: HttpClient = inject(HttpClient);
     private readonly apiUrl: string = `${inject(API_URL)}/people`;
 
-    private readonly PAGE_SIZE = 10;
+    readonly PAGE_SIZE = 10;
 
     personById(id: number): Observable<PeoplePerson> {
         return this.http
@@ -37,27 +35,10 @@ export class PeopleRepository {
                     (dto) =>
                         new PaginatedResult(
                             dto.count,
-                            dto.next as Nullable<UrlString>,
-                            dto.previous as Nullable<UrlString>,
-                            dto.results.map((item) => new PeoplePerson(item)),
-                            this.PAGE_SIZE
+                            this.PAGE_SIZE,
+                            dto.results.map((item) => new PeoplePerson(item))
                         )
                 )
             );
-    }
-
-    peoplePageByURL(url: UrlString): Observable<PaginatedResult<PeoplePerson>> {
-        return this.http.get<PaginatedResultDto<PeoplePersonDTO>>(url).pipe(
-            map(
-                (dto) =>
-                    new PaginatedResult(
-                        dto.count,
-                        dto.next as Nullable<UrlString>,
-                        dto.previous as Nullable<UrlString>,
-                        dto.results.map((item) => new PeoplePerson(item)),
-                        this.PAGE_SIZE
-                    )
-            )
-        );
     }
 }
