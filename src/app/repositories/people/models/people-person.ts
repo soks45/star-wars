@@ -1,6 +1,7 @@
 import { Centimeter } from '@core/types/centimeter';
 import { Kilogram } from '@core/types/kilogram';
 import { Nullable, NullableString } from '@core/types/nullable';
+import { UrlString } from '@core/types/url-string';
 import { PeoplePersonDTO } from '@repositories/people/dtos/people-person.dto';
 
 export class PeoplePerson {
@@ -21,17 +22,17 @@ export class PeoplePerson {
     /** Skin color of the person */
     readonly skinColor: string;
     /** URL of the homeworld */
-    readonly homeworld: string;
+    readonly homeworldURL: UrlString;
     /** Array of film resource URLs */
-    readonly films: string[];
+    readonly filmURLs: UrlString[];
     /** Array of species resource URLs */
-    readonly species: string[];
+    readonly speciesURLS: UrlString[];
     /** Array of starship resource URLs */
-    readonly starships: string[];
+    readonly starshipURLs: UrlString[];
     /** Array of vehicle resource URLs */
-    readonly vehicles: string[];
+    readonly vehicleURLs: UrlString[];
     /** Hypermedia URL of this resource */
-    readonly url: string;
+    readonly url: UrlString;
     /** ISO date string when created */
     readonly created: Date;
     /** ISO date string when edited */
@@ -46,12 +47,12 @@ export class PeoplePerson {
         this.height = Number(dto.height) as Centimeter;
         this.mass = Number(dto.mass) as Kilogram;
         this.skinColor = dto.skin_color;
-        this.homeworld = dto.homeworld;
-        this.films = [...dto.films];
-        this.species = [...dto.species];
-        this.starships = [...dto.starships];
-        this.vehicles = [...dto.vehicles];
-        this.url = dto.url;
+        this.homeworldURL = dto.homeworld as UrlString;
+        this.filmURLs = [...dto.films] as UrlString[];
+        this.speciesURLS = [...dto.species] as UrlString[];
+        this.starshipURLs = [...dto.starships] as UrlString[];
+        this.vehicleURLs = [...dto.vehicles] as UrlString[];
+        this.url = dto.url as UrlString;
         this.created = new Date(dto.created);
         this.edited = new Date(dto.edited);
     }
