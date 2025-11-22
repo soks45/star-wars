@@ -1,189 +1,206 @@
-<form tuiForm="l" [formGroup]="form" tuiCardLarge tuiAppearance="floating" (ngSubmit)="submitForm()">
-    <header tuiHeader>
-        <h1 tuiTitle>
-            {{ person().name }}
-            <span tuiSubtitle>ID #{{person().id}}</span>
-        </h1>
-    </header>
+<main tuiNavigationMain tuiCardLarge tuiAppearance="floating">
+    <tui-breadcrumbs>
+        <a *tuiItem tuiLink routerLink="/people"> Персонажи </a>
+        <a *tuiItem tuiLink [routerLink]="['/people', person().id]"> {{ person().name }} </a>
+    </tui-breadcrumbs>
 
-    <fieldset>
-        <div class="stack">
-            <tui-textfield tuiTextfieldSize="l">
-                <label tuiLabel>Дата рождения</label>
-                <input [formControl]="form.controls.birthYear" placeholder="Дата рождения" tuiTextfield />
-                <tui-icon
-                    icon="@tui.badge-question-mark"
-                    tuiTooltip="Год рождения персонажа, использующий стандарт вселенной — BBY или ABY (до или после Битвы при Явине). Битва при Явине — это сражение, которое происходит в конце эпизода IV «Звёздные войны: Новая надежда»."
-                />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.birthYear" [error]="[] | tuiFieldError | async" />
-        </div>
+    <form tuiForm="l" [formGroup]="form" (ngSubmit)="submitForm()">
+        <header tuiHeader>
+            <h1 tuiTitle>
+                {{ person().name }}
+                <span tuiSubtitle>ID #{{person().id}}</span>
+            </h1>
+        </header>
 
-        <div class="stack">
-            <tui-textfield tuiChevron>
-                <label tuiLabel>Пол</label>
-                <input [formControl]="form.controls.gender" tuiSelect />
-                <tui-data-list-wrapper *tuiTextfieldDropdown new [items]="genders" />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.gender" [error]="[] | tuiFieldError | async" />
-        </div>
-    </fieldset>
+        <fieldset>
+            <div class="stack">
+                <tui-textfield tuiTextfieldSize="l">
+                    <label tuiLabel>Дата рождения</label>
+                    <input [formControl]="form.controls.birthYear" placeholder="Дата рождения" tuiTextfield />
+                    <tui-icon
+                        icon="@tui.badge-question-mark"
+                        tuiTooltip="Год рождения персонажа, использующий стандарт вселенной — BBY или ABY (до или после Битвы при Явине). Битва при Явине — это сражение, которое происходит в конце эпизода IV «Звёздные войны: Новая надежда»."
+                    />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.birthYear" [error]="[] | tuiFieldError | async" />
+            </div>
 
-    <fieldset>
-        <div class="stack">
-            <tui-textfield [iconStart]="'@tui.paintbrush'">
-                <label tuiLabel>Цвет глаз</label>
-                <input placeholder="#00000000" tuiInputColor [formControl]="form.controls.eyeColor" />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.eyeColor" [error]="[] | tuiFieldError | async" />
-        </div>
+            <div class="stack">
+                <tui-textfield tuiChevron>
+                    <label tuiLabel>Пол</label>
+                    <input [formControl]="form.controls.gender" tuiSelect />
+                    <tui-data-list-wrapper *tuiTextfieldDropdown new [items]="genders" />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.gender" [error]="[] | tuiFieldError | async" />
+            </div>
+        </fieldset>
 
-        <div class="stack">
-            <tui-textfield [iconStart]="'@tui.paintbrush'">
-                <label tuiLabel>Цвет волос</label>
-                <input placeholder="#00000000" tuiInputColor [formControl]="form.controls.hairColor" />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.hairColor" [error]="[] | tuiFieldError | async" />
-        </div>
+        <fieldset>
+            <div class="stack">
+                <tui-textfield [iconStart]="'@tui.paintbrush'">
+                    <label tuiLabel>Цвет глаз</label>
+                    <input placeholder="#00000000" tuiInputColor [formControl]="form.controls.eyeColor" />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.eyeColor" [error]="[] | tuiFieldError | async" />
+            </div>
 
-        <div class="stack">
-            <tui-textfield [iconStart]="'@tui.paintbrush'">
-                <label tuiLabel>Цвет кожи</label>
-                <input placeholder="#00000000" tuiInputColor [formControl]="form.controls.skinColor" />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.skinColor" [error]="[] | tuiFieldError | async" />
-        </div>
-    </fieldset>
+            <div class="stack">
+                <tui-textfield [iconStart]="'@tui.paintbrush'">
+                    <label tuiLabel>Цвет волос</label>
+                    <input placeholder="#00000000" tuiInputColor [formControl]="form.controls.hairColor" />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.hairColor" [error]="[] | tuiFieldError | async" />
+            </div>
 
-    <fieldset>
-        <div class="stack">
-            <tui-textfield [iconStart]="'@tui.ruler-dimension-line'">
-                <label tuiLabel>Высота, см</label>
-                <input tuiInputNumber [formControl]="form.controls.height" />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.height" [error]="[] | tuiFieldError | async" />
-        </div>
+            <div class="stack">
+                <tui-textfield [iconStart]="'@tui.paintbrush'">
+                    <label tuiLabel>Цвет кожи</label>
+                    <input placeholder="#00000000" tuiInputColor [formControl]="form.controls.skinColor" />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.skinColor" [error]="[] | tuiFieldError | async" />
+            </div>
+        </fieldset>
 
-        <div class="stack">
-            <tui-textfield [iconStart]="'@tui.weight'">
-                <label tuiLabel>Масса, кг</label>
-                <input tuiInputNumber [formControl]="form.controls.mass" />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.mass" [error]="[] | tuiFieldError | async" />
-        </div>
-    </fieldset>
+        <fieldset>
+            <div class="stack">
+                <tui-textfield [iconStart]="'@tui.ruler-dimension-line'">
+                    <label tuiLabel>Высота, см</label>
+                    <input tuiInputNumber [formControl]="form.controls.height" />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.height" [error]="[] | tuiFieldError | async" />
+            </div>
 
-    <fieldset>
-        <div class="stack">
-            <tui-textfield tuiTextfieldSize="l">
-                <label tuiLabel>Ссылка на ресурс</label>
-                <input [formControl]="form.controls.url" placeholder="Ссылка" tuiTextfield />
-                <tui-icon icon="@tui.badge-question-mark" tuiTooltip="URL этого ресурса." />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.url" [error]="[] | tuiFieldError | async" />
-        </div>
+            <div class="stack">
+                <tui-textfield [iconStart]="'@tui.weight'">
+                    <label tuiLabel>Масса, кг</label>
+                    <input tuiInputNumber [formControl]="form.controls.mass" />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.mass" [error]="[] | tuiFieldError | async" />
+            </div>
+        </fieldset>
 
-        <div class="stack">
-            <tui-textfield tuiTextfieldSize="l">
-                <label tuiLabel>Домашняя планета</label>
-                <input [formControl]="form.controls.homeworldURL" placeholder="Домашняя планета" tuiTextfield />
-                <tui-icon
-                    icon="@tui.badge-question-mark"
-                    tuiTooltip="URL ресурса планеты, на которой этот персонаж родился или на которой он проживает."
-                />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.homeworldURL" [error]="[] | tuiFieldError | async" />
-        </div>
-    </fieldset>
+        <fieldset>
+            <div class="stack">
+                <tui-textfield tuiTextfieldSize="l">
+                    <label tuiLabel>Ссылка на ресурс</label>
+                    <input [formControl]="form.controls.url" placeholder="Ссылка" tuiTextfield />
+                    <tui-icon icon="@tui.badge-question-mark" tuiTooltip="URL этого ресурса." />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.url" [error]="[] | tuiFieldError | async" />
+            </div>
 
-    <fieldset>
-        <div class="stack">
-            <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
-                <label tuiLabel>Фильмы</label>
-                <input placeholder="URL фильма" tuiInputChip [unique]="true" [formControl]="form.controls.filmURLs" />
-                <tui-icon
-                    icon="@tui.badge-question-mark"
-                    tuiTooltip="Массив URL-адресов ресурсов фильмов, в которых этот персонаж принимал участие."
-                />
-                <tui-input-chip *tuiItem />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.filmURLs" [error]="[] | tuiFieldError | async" />
-        </div>
+            <div class="stack">
+                <tui-textfield tuiTextfieldSize="l">
+                    <label tuiLabel>Домашняя планета</label>
+                    <input [formControl]="form.controls.homeworldURL" placeholder="Домашняя планета" tuiTextfield />
+                    <tui-icon
+                        icon="@tui.badge-question-mark"
+                        tuiTooltip="URL ресурса планеты, на которой этот персонаж родился или на которой он проживает."
+                    />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.homeworldURL" [error]="[] | tuiFieldError | async" />
+            </div>
+        </fieldset>
 
-        <div class="stack">
-            <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
-                <label tuiLabel>Виды</label>
-                <input placeholder="URL вида" tuiInputChip [unique]="true" [formControl]="form.controls.speciesURLS" />
-                <tui-icon
-                    icon="@tui.badge-question-mark"
-                    tuiTooltip="Массив URL-адресов ресурсов видов, к которым принадлежит этот персонаж."
-                />
-                <tui-input-chip *tuiItem />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.speciesURLS" [error]="[] | tuiFieldError | async" />
-        </div>
-    </fieldset>
+        <fieldset>
+            <div class="stack">
+                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
+                    <label tuiLabel>Фильмы</label>
+                    <input
+                        placeholder="URL фильма"
+                        tuiInputChip
+                        [unique]="true"
+                        [formControl]="form.controls.filmURLs"
+                    />
+                    <tui-icon
+                        icon="@tui.badge-question-mark"
+                        tuiTooltip="Массив URL-адресов ресурсов фильмов, в которых этот персонаж принимал участие."
+                    />
+                    <tui-input-chip *tuiItem />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.filmURLs" [error]="[] | tuiFieldError | async" />
+            </div>
 
-    <fieldset>
-        <div class="stack">
-            <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
-                <label tuiLabel>Корабли</label>
-                <input
-                    placeholder="URL корабля"
-                    tuiInputChip
-                    [unique]="true"
-                    [formControl]="form.controls.starshipURLs"
-                />
-                <tui-icon
-                    icon="@tui.badge-question-mark"
-                    tuiTooltip="Массив URL-адресов ресурсов звездных кораблей, которыми управлял этот персонаж."
-                />
-                <tui-input-chip *tuiItem />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.starshipURLs" [error]="[] | tuiFieldError | async" />
-        </div>
+            <div class="stack">
+                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
+                    <label tuiLabel>Виды</label>
+                    <input
+                        placeholder="URL вида"
+                        tuiInputChip
+                        [unique]="true"
+                        [formControl]="form.controls.speciesURLS"
+                    />
+                    <tui-icon
+                        icon="@tui.badge-question-mark"
+                        tuiTooltip="Массив URL-адресов ресурсов видов, к которым принадлежит этот персонаж."
+                    />
+                    <tui-input-chip *tuiItem />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.speciesURLS" [error]="[] | tuiFieldError | async" />
+            </div>
+        </fieldset>
 
-        <div class="stack">
-            <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
-                <label tuiLabel>Транспортные средства</label>
-                <input
-                    placeholder="URL транспортного средства"
-                    tuiInputChip
-                    [unique]="true"
-                    [formControl]="form.controls.vehicleURLs"
-                />
-                <tui-icon
-                    icon="@tui.badge-question-mark"
-                    tuiTooltip="Массив URL-адресов ресурсов транспортных средств, которыми управлял этот персонаж."
-                />
-                <tui-input-chip *tuiItem />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.vehicleURLs" [error]="[] | tuiFieldError | async" />
-        </div>
-    </fieldset>
+        <fieldset>
+            <div class="stack">
+                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
+                    <label tuiLabel>Корабли</label>
+                    <input
+                        placeholder="URL корабля"
+                        tuiInputChip
+                        [unique]="true"
+                        [formControl]="form.controls.starshipURLs"
+                    />
+                    <tui-icon
+                        icon="@tui.badge-question-mark"
+                        tuiTooltip="Массив URL-адресов ресурсов звездных кораблей, которыми управлял этот персонаж."
+                    />
+                    <tui-input-chip *tuiItem />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.starshipURLs" [error]="[] | tuiFieldError | async" />
+            </div>
 
-    <fieldset>
-        <div class="stack">
-            <tui-textfield>
-                <label tuiLabel>Дата создания</label>
-                <input tuiInputDate [formControl]="form.controls.created" />
-                <tui-calendar *tuiTextfieldDropdown />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.created" [error]="[] | tuiFieldError | async" />
-        </div>
+            <div class="stack">
+                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
+                    <label tuiLabel>Транспортные средства</label>
+                    <input
+                        placeholder="URL транспортного средства"
+                        tuiInputChip
+                        [unique]="true"
+                        [formControl]="form.controls.vehicleURLs"
+                    />
+                    <tui-icon
+                        icon="@tui.badge-question-mark"
+                        tuiTooltip="Массив URL-адресов ресурсов транспортных средств, которыми управлял этот персонаж."
+                    />
+                    <tui-input-chip *tuiItem />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.vehicleURLs" [error]="[] | tuiFieldError | async" />
+            </div>
+        </fieldset>
 
-        <div class="stack">
-            <tui-textfield>
-                <label tuiLabel>Дата редактирования</label>
-                <input tuiInputDate [formControl]="form.controls.edited" />
-                <tui-calendar *tuiTextfieldDropdown />
-            </tui-textfield>
-            <tui-error [formControl]="form.controls.edited" [error]="[] | tuiFieldError | async" />
-        </div>
-    </fieldset>
+        <fieldset>
+            <div class="stack">
+                <tui-textfield>
+                    <label tuiLabel>Дата создания</label>
+                    <input tuiInputDate [formControl]="form.controls.created" />
+                    <tui-calendar *tuiTextfieldDropdown />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.created" [error]="[] | tuiFieldError | async" />
+            </div>
 
-    <footer>
-        <button appearance="secondary" tuiButton type="button" (click)="resetForm()">Сбросить</button>
-        <button tuiButton type="submit">Сохранить</button>
-    </footer>
-</form>
+            <div class="stack">
+                <tui-textfield>
+                    <label tuiLabel>Дата редактирования</label>
+                    <input tuiInputDate [formControl]="form.controls.edited" />
+                    <tui-calendar *tuiTextfieldDropdown />
+                </tui-textfield>
+                <tui-error [formControl]="form.controls.edited" [error]="[] | tuiFieldError | async" />
+            </div>
+        </fieldset>
+
+        <footer>
+            <button appearance="secondary" tuiButton type="button" (click)="resetForm()">Сбросить</button>
+            <button tuiButton type="submit">Сохранить</button>
+        </footer>
+    </form>
+</main>

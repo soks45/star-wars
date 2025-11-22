@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 import { TuiDay } from '@taiga-ui/cdk';
 import {
@@ -9,10 +10,12 @@ import {
     tuiDateFormatProvider,
     TuiError,
     TuiIcon,
+    TuiLink,
     TuiTextfield,
     TuiTitle,
 } from '@taiga-ui/core';
 import {
+    TuiBreadcrumbs,
     TuiChevron,
     TuiDataListWrapper,
     TuiFieldErrorPipe,
@@ -24,7 +27,7 @@ import {
     TuiSelect,
     TuiTooltip,
 } from '@taiga-ui/kit';
-import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
+import { TuiCardLarge, TuiForm, TuiHeader, TuiNavigation } from '@taiga-ui/layout';
 
 import { Centimeter } from '@core/types/centimeter';
 import { Kilogram } from '@core/types/kilogram';
@@ -78,13 +81,17 @@ export type PeoplePersonCardFormControls = {
         TuiInputChip,
         TuiButton,
         TuiInputDate,
+        TuiNavigation,
+        TuiLink,
+        TuiBreadcrumbs,
+        RouterLink,
     ],
     providers: [
         tuiDateFormatProvider({ mode: 'MDY', separator: '/' }),
         tuiInputDateOptionsProviderNew({
             valueTransformer: {
-                fromControlValue: (value: Date | null): TuiDay | null => value && TuiDay.fromUtcNativeDate(value),
-                toControlValue: (value: TuiDay | null): Date | null => value?.toUtcNativeDate() || null,
+                fromControlValue: (value: NullableDate): Nullable<TuiDay> => value && TuiDay.fromUtcNativeDate(value),
+                toControlValue: (value: Nullable<TuiDay>): NullableDate => value?.toUtcNativeDate() || null,
             },
         }),
     ],
