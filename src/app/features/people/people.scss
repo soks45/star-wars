@@ -16,11 +16,21 @@
     }
 
     &_table {
+        position: relative;
         flex-grow: 1;
         height: 0; // хак для скролла
     }
 
     &_pagination {
         padding: 1rem;
+    }
+
+    &_loader-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
     }
 }

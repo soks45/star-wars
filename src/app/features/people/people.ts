@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { TuiAppearance, TuiTitle } from '@taiga-ui/core';
+import { TuiAppearance, TuiLoader, TuiTitle } from '@taiga-ui/core';
 import { TuiCardLarge, TuiHeader } from '@taiga-ui/layout';
 import {
     BehaviorSubject,
@@ -42,6 +42,7 @@ import { PeoplePerson } from '@repositories/people';
         AsyncPipe,
         PeoplePagination,
         PeopleEmptyBlockPlaceholder,
+        TuiLoader,
     ],
     templateUrl: './people.html',
     styleUrl: './people.scss',

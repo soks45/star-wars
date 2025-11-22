@@ -14,7 +14,9 @@
         <sw-people-empty-block-placeholder
             (resetSearchParams)="resetSearchParams()"
         ></sw-people-empty-block-placeholder>
-        } }
+        } } @if (isLoading$ | async) {
+        <tui-loader class="people_loader-overlay" size="xxl" [overlay]="false"> </tui-loader>
+        }
     </div>
 
     <sw-people-pagination
