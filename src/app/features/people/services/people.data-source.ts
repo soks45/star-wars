@@ -1,6 +1,6 @@
 import { ErrorHandler, inject, Injectable } from '@angular/core';
 
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, EMPTY, Observable, of } from 'rxjs';
 
 import { PaginatedResult } from '@core/utils/paginated-result';
 import { PeoplePerson, PeopleRepository } from '@repositories/people';
@@ -19,6 +19,16 @@ export class PeopleDataSource {
                 this.errorHandler.handleError(err);
 
                 return of(PaginatedResult.empty<PeoplePerson>(this.peopleRepository.PAGE_SIZE));
+            })
+        );
+    }
+
+    person(id: number): Observable<PeoplePerson> {
+        return this.peopleRepository.personById(id).pipe(
+            catchError((err: unknown) => {
+                this.errorHandler.handleError(err);
+
+                return EMPTY;
             })
         );
     }
