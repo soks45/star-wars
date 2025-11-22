@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { TuiRoot } from '@taiga-ui/core';
 
 import { Header } from '@shared/components/header/header';
-import { Sidebar, SidebarItem } from '@shared/components/sidebar/sidebar';
+import { Sidebar } from '@shared/components/sidebar/sidebar';
 
 @Component({
     selector: 'sw-root',
@@ -14,7 +14,7 @@ import { Sidebar, SidebarItem } from '@shared/components/sidebar/sidebar';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-    protected readonly sidebarConfig: SidebarItem[] = [
+    protected readonly sidebarConfig = [
         {
             label: 'Персонажи',
             link: '/people',

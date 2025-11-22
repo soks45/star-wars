@@ -1,8 +1,23 @@
-<div class="logo">
+<header class="header">
+    <button
+        appearance="flat-grayscale"
+        iconStart="@tui.menu"
+        size="m"
+        tuiIconButton
+        type="button"
+        [style.border-radius.%]="100"
+        (click)="toggle(true)"
+        class="header_menu"
+    ></button>
+
+    <tui-drawer *tuiPopup="open()" direction="left" class="drawer" [overlay]="true" (click.self)="toggle(false)">
+        <sw-sidebar [config]="config()" (click)="toggle(false)"></sw-sidebar>
+    </tui-drawer>
+
     <a routerLink="/" tuiLink>
-        <span class="logo_name">
-            <img alt="Logo" class="log_img" ngSrc="/star-wars.webp" width="64" height="64" priority />
-            Star Wars
+        <span class="header_name">
+            <img alt="Logo" class="header_img" ngSrc="/star-wars.webp" width="64" height="64" priority />
+            <span class="header_cap">Star Wars</span>
         </span>
     </a>
-</div>
+</header>

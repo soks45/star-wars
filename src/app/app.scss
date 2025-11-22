@@ -1,4 +1,12 @@
 .app {
+    &_header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    }
+
     &_page {
         padding-block-start: 4rem;
     }
@@ -9,10 +17,16 @@
         bottom: 0;
         inline-size: 16.25rem;
         border-inline-end: 1px solid var(--tui-border-normal);
+        @media (max-width: 1280px) {
+            display: none;
+        }
     }
 
     &_content {
         margin-inline-start: 16.25rem;
+        @media (max-width: 1280px) {
+            margin-inline-start: 0;
+        }
     }
 
     &_content-wrapper {

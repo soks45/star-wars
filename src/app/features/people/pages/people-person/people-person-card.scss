@@ -7,3 +7,12 @@
     gap: inherit;
     flex-direction: column;
 }
+
+@media (max-width: 1280px) {
+    form {
+        fieldset {
+            display: grid;
+            grid-auto-flow: row;
+        }
+    }
+}
