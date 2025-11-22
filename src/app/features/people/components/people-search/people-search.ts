@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, model } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { TuiButton, TuiTextfield } from '@taiga-ui/core';
@@ -9,7 +9,6 @@ import { NullableString } from '@core/types/nullable';
 export type PeopleSearchFormControls = {
     name: FormControl<NullableString>;
 };
-export type PeopleSearchFormControlsValue = FormGroup<PeopleSearchFormControls>['value'];
 
 @Component({
     selector: 'sw-people-search',
@@ -19,15 +18,19 @@ export type PeopleSearchFormControlsValue = FormGroup<PeopleSearchFormControls>[
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PeopleSearch {
-    readonly peopleSearch = output<PeopleSearchFormControlsValue>();
+    readonly name = model.required<NullableString>();
 
     protected readonly form = new FormGroup<PeopleSearchFormControls>({
         name: new FormControl(),
     });
 
+    constructor() {
+        effect(() => this.form.controls.name.setValue(this.name()));
+    }
+
     search(): void {
         if (this.form.valid) {
-            this.peopleSearch.emit(this.form.value);
+            this.name.set(this.form.controls.name.value);
         }
     }
 }

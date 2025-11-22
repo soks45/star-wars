@@ -4,8 +4,12 @@
             <h1 tuiTitle>Персонажи</h1>
         </header>
 
-        <sw-people-search></sw-people-search>
+        <sw-people-search [name]="name$ | async" (nameChange)="nameChange($event)"></sw-people-search>
     </div>
 
-    <sw-people-table tuiCardLarge tuiAppearance="floating" class="people_table"></sw-people-table>
+    <div tuiCardLarge tuiAppearance="floating" class="people_table">
+        <sw-people-table></sw-people-table>
+
+        <tui-pagination [index]="10" [length]="64" [sidePadding]="1" />
+    </div>
 </div>
