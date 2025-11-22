@@ -1,1 +1,16 @@
-<p>people-table works!</p>
+<tui-scrollbar class="people-table">
+    <table tuiTable [columns]="columns">
+        <thead>
+            <tr tuiThGroup>
+                @for (col of columns; track col) {
+                <th *tuiHead="col" tuiTh [sticky]="true">{{ col }}</th>
+                }
+            </tr>
+        </thead>
+        <tbody tuiTbody [data]="people()">
+            @for (item of people(); track item.url) {
+            <tr tuiTr></tr>
+            }
+        </tbody>
+    </table>
+</tui-scrollbar>

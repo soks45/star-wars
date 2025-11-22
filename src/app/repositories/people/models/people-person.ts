@@ -8,7 +8,7 @@ export class PeoplePerson {
     /** The name of this person */
     readonly name: string;
     /** Birth year in BBY/ABY format (Before/After Battle of Yavin) */
-    readonly birthYear: string;
+    readonly birthYear: NullableString;
     /** Eye color */
     readonly eyeColor: NullableString;
     /** Gender ("Male", "Female", "unknown", "n/a") */
@@ -16,9 +16,9 @@ export class PeoplePerson {
     /** Hair color ("unknown" or "n/a") */
     readonly hairColor: NullableString;
     /** Height in centimeters */
-    readonly height: Centimeter;
+    readonly height: Nullable<Centimeter>;
     /** Mass in kilograms */
-    readonly mass: Kilogram;
+    readonly mass: Nullable<Kilogram>;
     /** Skin color of the person */
     readonly skinColor: string;
     /** URL of the homeworld */
@@ -40,12 +40,12 @@ export class PeoplePerson {
 
     constructor(dto: PeoplePersonDTO) {
         this.name = dto.name;
-        this.birthYear = dto.birth_year;
-        this.eyeColor = dto.eye_color;
+        this.birthYear = this.clean(dto.birth_year);
+        this.eyeColor = this.clean(dto.eye_color);
         this.gender = this.clean(dto.gender);
         this.hairColor = this.clean(dto.hair_color);
-        this.height = Number(dto.height) as Centimeter;
-        this.mass = Number(dto.mass) as Kilogram;
+        this.height = this.clean(dto.height) ? (Number(dto.height) as Centimeter) : null;
+        this.mass = this.clean(dto.mass) ? (Number(dto.mass) as Kilogram) : null;
         this.skinColor = dto.skin_color;
         this.homeworldURL = dto.homeworld as UrlString;
         this.filmURLs = [...dto.films] as UrlString[];
@@ -57,9 +57,9 @@ export class PeoplePerson {
         this.edited = new Date(dto.edited);
     }
 
-    private clean<T extends string>(value: T | 'unknown' | 'n/a'): T | null {
+    private clean<T>(value: T | 'unknown' | 'n/a'): T | null {
         if (!value) return null;
 
-        return value === 'unknown' || value === 'n/a' ? null : value;
+        return value === 'unknown' || value === 'n/a' || value === 'none' ? null : value;
     }
 }

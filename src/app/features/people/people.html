@@ -8,12 +8,21 @@
     </div>
 
     <div tuiCardLarge tuiAppearance="floating" class="people_table">
-        <sw-people-table [people]="(people$ | async) || []"></sw-people-table>
-
-        <sw-people-pagination
-            [page]="(page$ | async) || 1"
-            [total]="(totalPages$ | async) || 0"
-            (pageChange)="pageChange($event)"
-        ></sw-people-pagination>
+        @if (people$ | async; as people) { @if (people.length) {
+        <sw-people-table [people]="people"></sw-people-table>
+        } @else {
+        <sw-people-empty-block-placeholder
+            (resetSearchParams)="resetSearchParams()"
+        ></sw-people-empty-block-placeholder>
+        } }
     </div>
+
+    <sw-people-pagination
+        tuiCardLarge
+        tuiAppearance="floating"
+        class="people_pagination"
+        [page]="(page$ | async) || 1"
+        [total]="(totalPages$ | async) || 0"
+        (pageChange)="pageChange($event)"
+    ></sw-people-pagination>
 </div>

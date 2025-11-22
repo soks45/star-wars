@@ -5,7 +5,9 @@
         <sw-sidebar class="app_sidebar" [config]="sidebarConfig" />
 
         <div class="app_content">
-            <router-outlet />
+            <div class="app_content-wrapper">
+                <router-outlet />
+            </div>
         </div>
     </div>
 </tui-root>

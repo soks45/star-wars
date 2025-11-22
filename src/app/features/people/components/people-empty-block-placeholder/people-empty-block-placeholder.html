@@ -1,0 +1,8 @@
+<tui-block-status class="card" [card]="true">
+    <img alt="hidden content" ngSrc="/yoda.png" width="680" height="680" tuiSlot="top" class="image" />
+
+    <h3>Нет персонажей</h3>
+    <button appearance="secondary" size="m" tuiButton type="button" (click)="resetSearchParams.emit()">
+        Сбросить параметры поиска
+    </button>
+</tui-block-status>

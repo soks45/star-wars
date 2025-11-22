@@ -13,6 +13,9 @@
 
     &_content {
         margin-inline-start: 16.25rem;
-        padding: 3.75rem min(8vw, 8.75rem);
+    }
+
+    &_content-wrapper {
+        margin: 2rem min(2vw, 3.75rem);
     }
 }
