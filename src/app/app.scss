@@ -16,6 +16,6 @@
     }
 
     &_content-wrapper {
-        margin: 2rem min(2vw, 3.75rem);
+        margin: var(--page-wrapper-padding) min(2vw, 3.75rem);
     }
 }
