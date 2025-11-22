@@ -2,15 +2,91 @@
     <table tuiTable [columns]="columns">
         <thead>
             <tr tuiThGroup>
-                @for (col of columns; track col) {
-                <th *tuiHead="col" tuiTh [sticky]="true">{{ col }}</th>
-                }
+                <th *tuiHead="'name'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Имя</th>
+                <th *tuiHead="'gender'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Пол</th>
+                <th *tuiHead="'birthYear'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Год рождения
+                </th>
+                <th *tuiHead="'height'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Рост</th>
+                <th *tuiHead="'mass'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Масса</th>
+                <th *tuiHead="'skinColor'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Цвет кожи
+                </th>
+                <th *tuiHead="'eyeColor'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Цвет глаз
+                </th>
+                <th *tuiHead="'hairColor'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Цвет волос
+                </th>
+                <th *tuiHead="'created'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Дата создания
+                </th>
+                <th *tuiHead="'edited'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Дата редактирования
+                </th>
+                <th *tuiHead="'homeworldURL'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Домашняя планета
+                </th>
+                <th *tuiHead="'speciesURLS'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Виды
+                </th>
+                <th *tuiHead="'filmURLs'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Фильмы
+                </th>
+                <th *tuiHead="'starshipURLs'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Космические корабли
+                </th>
+                <th *tuiHead="'vehicleURLs'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                    Транспортные средства
+                </th>
+                <th *tuiHead="'url'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Ссылка</th>
             </tr>
         </thead>
         <tbody tuiTbody [data]="people()">
             @for (item of people(); track item.url) {
-            <tr tuiTr></tr>
+            <tr tuiTr>
+                <td *tuiCell="'name'" tuiTd>{{ item.name }}</td>
+                <td *tuiCell="'gender'" tuiTd>{{ item.gender }}</td>
+                <td *tuiCell="'birthYear'" tuiTd>{{ item.birthYear }}</td>
+                <td *tuiCell="'height'" tuiTd>{{ item.height }}</td>
+                <td *tuiCell="'mass'" tuiTd>{{ item.mass }}</td>
+                <td *tuiCell="'skinColor'" tuiTd>{{ item.skinColor }}</td>
+                <td *tuiCell="'eyeColor'" tuiTd>{{ item.eyeColor }}</td>
+                <td *tuiCell="'hairColor'" tuiTd>{{ item.hairColor }}</td>
+                <td *tuiCell="'created'" tuiTd>{{ item.created | date: 'short' }}</td>
+                <td *tuiCell="'edited'" tuiTd>{{ item.edited | date: 'short' }}</td>
+                <td *tuiCell="'url'" tuiTd>
+                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: item.url }"></ng-container>
+                </td>
+                <td *tuiCell="'homeworldURL'" tuiTd>
+                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: item.homeworldURL }"></ng-container>
+                </td>
+                <td *tuiCell="'speciesURLS'" tuiTd>
+                    @for (url of item.speciesURLS; track url) {
+                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
+                    }
+                </td>
+                <td *tuiCell="'filmURLs'" tuiTd>
+                    @for (url of item.filmURLs; track url) {
+                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
+                    }
+                </td>
+                <td *tuiCell="'starshipURLs'" tuiTd>
+                    @for (url of item.starshipURLs; track url) {
+                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
+                    }
+                </td>
+                <td *tuiCell="'vehicleURLs'" tuiTd>
+                    @for (url of item.vehicleURLs; track url) {
+                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>
 </tui-scrollbar>
+
+<ng-template #linkTemplate let-link="link">
+    <a tuiLink [href]="link" target="_blank" class="people_link">{{ link }}</a>
+</ng-template>

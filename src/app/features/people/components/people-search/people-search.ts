@@ -33,7 +33,7 @@ export class PeopleSearch {
 
     search(): void {
         if (this.form.valid) {
-            this.name.set(this.form.controls.name.value);
+            this.name.set(this.form.controls.name.value || null);
         }
     }
 }
