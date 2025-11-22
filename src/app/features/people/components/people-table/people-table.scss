@@ -6,3 +6,33 @@
 .people_link {
     display: block;
 }
+
+.people-table {
+    &_head {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    &_row {
+        &:hover {
+            cursor: pointer;
+
+            > td {
+                background-color: var(--tui-background-base-alt);
+            }
+        }
+    }
+}
+
+.people-table_head .people-table_th--sticky {
+    left: 0;
+    position: sticky;
+    z-index: 30;
+}
+
+.people-table_body .people-table_td--sticky {
+    left: 0;
+    position: sticky;
+    z-index: 30;
+}

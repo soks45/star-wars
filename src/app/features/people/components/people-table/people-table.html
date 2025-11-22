@@ -1,50 +1,49 @@
 <tui-scrollbar class="people-table">
     <table tuiTable [columns]="columns">
-        <thead>
+        <thead class="people-table_head">
             <tr tuiThGroup>
-                <th *tuiHead="'name'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Имя</th>
-                <th *tuiHead="'gender'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Пол</th>
-                <th *tuiHead="'birthYear'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Год рождения
-                </th>
-                <th *tuiHead="'height'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Рост</th>
-                <th *tuiHead="'mass'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Масса</th>
-                <th *tuiHead="'skinColor'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Цвет кожи
-                </th>
-                <th *tuiHead="'eyeColor'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Цвет глаз
-                </th>
-                <th *tuiHead="'hairColor'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Цвет волос
-                </th>
-                <th *tuiHead="'created'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Дата создания
-                </th>
-                <th *tuiHead="'edited'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Дата редактирования
-                </th>
-                <th *tuiHead="'homeworldURL'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Домашняя планета
-                </th>
-                <th *tuiHead="'speciesURLS'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Виды
-                </th>
-                <th *tuiHead="'filmURLs'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
-                    Фильмы
-                </th>
-                <th *tuiHead="'starshipURLs'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                <th
+                    *tuiHead="'id'"
+                    tuiTh
+                    [sorter]="null"
+                    [style.white-space]="'nowrap'"
+                    class="people-table_th--sticky"
+                ></th>
+                <th *tuiHead="'name'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Имя</th>
+                <th *tuiHead="'gender'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Пол</th>
+                <th *tuiHead="'birthYear'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Год рождения</th>
+                <th *tuiHead="'height'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Рост</th>
+                <th *tuiHead="'mass'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Масса</th>
+                <th *tuiHead="'skinColor'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Цвет кожи</th>
+                <th *tuiHead="'eyeColor'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Цвет глаз</th>
+                <th *tuiHead="'hairColor'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Цвет волос</th>
+                <th *tuiHead="'created'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Дата создания</th>
+                <th *tuiHead="'edited'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Дата редактирования</th>
+                <th *tuiHead="'homeworldURL'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Домашняя планета</th>
+                <th *tuiHead="'speciesURLS'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Виды</th>
+                <th *tuiHead="'filmURLs'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Фильмы</th>
+                <th *tuiHead="'starshipURLs'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">
                     Космические корабли
                 </th>
-                <th *tuiHead="'vehicleURLs'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">
+                <th *tuiHead="'vehicleURLs'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">
                     Транспортные средства
                 </th>
-                <th *tuiHead="'url'" tuiTh [sticky]="true" [sorter]="null" [style.white-space]="'nowrap'">Ссылка</th>
+                <th *tuiHead="'url'" tuiTh [sorter]="null" [style.white-space]="'nowrap'">Ссылка</th>
             </tr>
         </thead>
-        <tbody tuiTbody [data]="people()">
+        <tbody tuiTbody [data]="people()" class="people-table_body">
             @for (item of people(); track item.url) {
-            <tr tuiTr>
+            <tr tuiTr class="people-table_row">
+                <td *tuiCell="'id'" tuiTd class="people-table_td--sticky">
+                    <button
+                        appearance="action"
+                        iconStart="@tui.external-link"
+                        size="xs"
+                        tuiIconButton
+                        type="button"
+                        [routerLink]="['/people', item.id]"
+                    ></button>
+                </td>
                 <td *tuiCell="'name'" tuiTd>{{ item.name }}</td>
                 <td *tuiCell="'gender'" tuiTd>{{ item.gender }}</td>
                 <td *tuiCell="'birthYear'" tuiTd>{{ item.birthYear }}</td>

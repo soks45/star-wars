@@ -1,3 +1,5 @@
+import { tuiIsPresent } from '@taiga-ui/cdk';
+
 import { Centimeter } from '@core/types/centimeter';
 import { Kilogram } from '@core/types/kilogram';
 import { Nullable, NullableString } from '@core/types/nullable';
@@ -5,6 +7,8 @@ import { UrlString } from '@core/types/url-string';
 import { PeoplePersonDTO } from '@repositories/people/dtos/people-person.dto';
 
 export class PeoplePerson {
+    /** The id of this person */
+    readonly id: number;
     /** The name of this person */
     readonly name: string;
     /** Birth year in BBY/ABY format (Before/After Battle of Yavin) */
@@ -39,6 +43,7 @@ export class PeoplePerson {
     readonly edited: Date;
 
     constructor(dto: PeoplePersonDTO) {
+        this.id = this.getIdFromUrl(dto.url);
         this.name = dto.name;
         this.birthYear = this.clean(dto.birth_year);
         this.eyeColor = this.clean(dto.eye_color);
@@ -61,5 +66,15 @@ export class PeoplePerson {
         if (!value) return null;
 
         return value === 'unknown' || value === 'n/a' || value === 'none' ? null : value;
+    }
+
+    private getIdFromUrl(url: string): number {
+        const match = url.match(/(\d+)\/$/);
+
+        if (!tuiIsPresent(match)) {
+            throw new Error('Неверный формат url');
+        }
+
+        return Number(match[1]);
     }
 }

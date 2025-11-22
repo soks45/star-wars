@@ -4,7 +4,11 @@
             <h1 tuiTitle>Персонажи</h1>
         </header>
 
-        <sw-people-search [name]="name$ | async" (nameChange)="nameChange($event)"></sw-people-search>
+        <sw-people-search
+            [name]="name$ | async"
+            (nameChange)="nameChange($event)"
+            [disabled]="(isLoading$ | async)"
+        ></sw-people-search>
     </div>
 
     <div tuiCardLarge tuiAppearance="floating" class="people_table">
