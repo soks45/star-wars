@@ -1,6 +1,6 @@
 <nav class="sidebar">
     @for (item of config(); track item.link) {
-    <a routerLinkActive="sidebar_link-active" tuiLink class="sidebar_link" [routerLink]="item.link">
+    <a routerLinkActive="sidebar_link--active" tuiLink class="sidebar_link" [routerLink]="item.link">
         {{ item.label }} @if (item.icon) { <tui-icon [icon]="item.icon"></tui-icon> }
     </a>
     }
