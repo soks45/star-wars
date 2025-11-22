@@ -10,6 +10,10 @@
     <div tuiCardLarge tuiAppearance="floating" class="people_table">
         <sw-people-table></sw-people-table>
 
-        <tui-pagination [index]="10" [length]="64" [sidePadding]="1" />
+        <sw-people-pagination
+            [page]="(page$ | async) || 1"
+            [total]="64"
+            (pageChange)="pageChange($event)"
+        ></sw-people-pagination>
     </div>
 </div>

@@ -9,3 +9,9 @@ export function stringFromQueryParams(param: unknown): NullableString {
 export function numberFromQueryParams(param: unknown): NullableNumber {
     return tuiIsPresent(param) && !Number.isNaN(Number(param)) ? Number(param) : null;
 }
+
+export function pageFromQueryParams(param: unknown): number {
+    const value = Number(param);
+
+    return !Number.isNaN(value) && Number.isInteger(value) && value > 0 ? value : 1;
+}
