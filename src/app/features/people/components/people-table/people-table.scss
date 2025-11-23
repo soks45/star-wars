@@ -16,8 +16,6 @@
 
     &_row {
         &:hover {
-            cursor: pointer;
-
             > td {
                 background-color: var(--tui-background-base-alt);
             }
