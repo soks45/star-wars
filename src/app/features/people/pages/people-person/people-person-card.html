@@ -8,7 +8,7 @@
         <header tuiHeader>
             <h1 tuiTitle>
                 {{ person().name }}
-                <span tuiSubtitle>ID #{{person().id}}</span>
+                <span tuiSubtitle>ID #{{ person().id }}</span>
             </h1>
         </header>
 
@@ -26,7 +26,7 @@
             </div>
 
             <div class="stack">
-                <tui-textfield tuiChevron>
+                <tui-textfield tuiChevron [iconStart]="'@tui.venus-and-mars'">
                     <label tuiLabel>Пол</label>
                     <input [formControl]="form.controls.gender" tuiSelect />
                     <tui-data-list-wrapper *tuiTextfieldDropdown new [items]="genders" />
@@ -122,7 +122,7 @@
             </div>
 
             <div class="stack">
-                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
+                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.person-standing'">
                     <label tuiLabel>Виды</label>
                     <input
                         placeholder="URL вида"
@@ -142,7 +142,7 @@
 
         <fieldset>
             <div class="stack">
-                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
+                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.rocket'">
                     <label tuiLabel>Корабли</label>
                     <input
                         placeholder="URL корабля"
@@ -160,7 +160,7 @@
             </div>
 
             <div class="stack">
-                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.clapperboard'">
+                <tui-textfield multi tuiTextfieldSize="l" [iconStart]="'@tui.car'">
                     <label tuiLabel>Транспортные средства</label>
                     <input
                         placeholder="URL транспортного средства"

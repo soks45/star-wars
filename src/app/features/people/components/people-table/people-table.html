@@ -33,54 +33,56 @@
         </thead>
         <tbody tuiTbody [data]="people()" class="people-table_body">
             @for (item of people(); track item.url) {
-            <tr tuiTr class="people-table_row">
-                <td *tuiCell="'id'" tuiTd class="people-table_td--sticky">
-                    <button
-                        appearance="action"
-                        iconStart="@tui.external-link"
-                        size="xs"
-                        tuiIconButton
-                        type="button"
-                        [routerLink]="['/people', item.id]"
-                    ></button>
-                </td>
-                <td *tuiCell="'name'" tuiTd>{{ item.name }}</td>
-                <td *tuiCell="'gender'" tuiTd>{{ item.gender }}</td>
-                <td *tuiCell="'birthYear'" tuiTd>{{ item.birthYear }}</td>
-                <td *tuiCell="'height'" tuiTd>{{ item.height }}</td>
-                <td *tuiCell="'mass'" tuiTd>{{ item.mass }}</td>
-                <td *tuiCell="'skinColor'" tuiTd>{{ item.skinColor }}</td>
-                <td *tuiCell="'eyeColor'" tuiTd>{{ item.eyeColor }}</td>
-                <td *tuiCell="'hairColor'" tuiTd>{{ item.hairColor }}</td>
-                <td *tuiCell="'created'" tuiTd>{{ item.created | date: 'short' }}</td>
-                <td *tuiCell="'edited'" tuiTd>{{ item.edited | date: 'short' }}</td>
-                <td *tuiCell="'url'" tuiTd>
-                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: item.url }"></ng-container>
-                </td>
-                <td *tuiCell="'homeworldURL'" tuiTd>
-                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: item.homeworldURL }"></ng-container>
-                </td>
-                <td *tuiCell="'speciesURLS'" tuiTd>
-                    @for (url of item.speciesURLS; track url) {
-                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
-                    }
-                </td>
-                <td *tuiCell="'filmURLs'" tuiTd>
-                    @for (url of item.filmURLs; track url) {
-                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
-                    }
-                </td>
-                <td *tuiCell="'starshipURLs'" tuiTd>
-                    @for (url of item.starshipURLs; track url) {
-                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
-                    }
-                </td>
-                <td *tuiCell="'vehicleURLs'" tuiTd>
-                    @for (url of item.vehicleURLs; track url) {
-                    <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
-                    }
-                </td>
-            </tr>
+                <tr tuiTr class="people-table_row">
+                    <td *tuiCell="'id'" tuiTd class="people-table_td--sticky">
+                        <button
+                            appearance="action"
+                            iconStart="@tui.external-link"
+                            size="xs"
+                            tuiIconButton
+                            type="button"
+                            [routerLink]="['/people', item.id]"
+                        ></button>
+                    </td>
+                    <td *tuiCell="'name'" tuiTd>{{ item.name }}</td>
+                    <td *tuiCell="'gender'" tuiTd>{{ item.gender }}</td>
+                    <td *tuiCell="'birthYear'" tuiTd>{{ item.birthYear }}</td>
+                    <td *tuiCell="'height'" tuiTd>{{ item.height }}</td>
+                    <td *tuiCell="'mass'" tuiTd>{{ item.mass }}</td>
+                    <td *tuiCell="'skinColor'" tuiTd>{{ item.skinColor }}</td>
+                    <td *tuiCell="'eyeColor'" tuiTd>{{ item.eyeColor }}</td>
+                    <td *tuiCell="'hairColor'" tuiTd>{{ item.hairColor }}</td>
+                    <td *tuiCell="'created'" tuiTd>{{ item.created | date: 'short' }}</td>
+                    <td *tuiCell="'edited'" tuiTd>{{ item.edited | date: 'short' }}</td>
+                    <td *tuiCell="'url'" tuiTd>
+                        <ng-container *ngTemplateOutlet="linkTemplate; context: { link: item.url }"></ng-container>
+                    </td>
+                    <td *tuiCell="'homeworldURL'" tuiTd>
+                        <ng-container
+                            *ngTemplateOutlet="linkTemplate; context: { link: item.homeworldURL }"
+                        ></ng-container>
+                    </td>
+                    <td *tuiCell="'speciesURLS'" tuiTd>
+                        @for (url of item.speciesURLS; track url) {
+                            <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
+                        }
+                    </td>
+                    <td *tuiCell="'filmURLs'" tuiTd>
+                        @for (url of item.filmURLs; track url) {
+                            <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
+                        }
+                    </td>
+                    <td *tuiCell="'starshipURLs'" tuiTd>
+                        @for (url of item.starshipURLs; track url) {
+                            <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
+                        }
+                    </td>
+                    <td *tuiCell="'vehicleURLs'" tuiTd>
+                        @for (url of item.vehicleURLs; track url) {
+                            <ng-container *ngTemplateOutlet="linkTemplate; context: { link: url }"></ng-container>
+                        }
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

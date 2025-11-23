@@ -7,19 +7,22 @@
         <sw-people-search
             [name]="name$ | async"
             (nameChange)="nameChange($event)"
-            [disabled]="(isLoading$ | async)"
+            [disabled]="isLoading$ | async"
         ></sw-people-search>
     </div>
 
     <div tuiCardLarge tuiAppearance="floating" class="people_table">
-        @if (people$ | async; as people) { @if (people.length) {
-        <sw-people-table [people]="people"></sw-people-table>
-        } @else {
-        <sw-people-empty-block-placeholder
-            (resetSearchParams)="resetSearchParams()"
-        ></sw-people-empty-block-placeholder>
-        } } @if (isLoading$ | async) {
-        <tui-loader class="people_loader-overlay" size="xxl" [overlay]="false"> </tui-loader>
+        @if (people$ | async; as people) {
+            @if (people.length) {
+                <sw-people-table [people]="people"></sw-people-table>
+            } @else {
+                <sw-people-empty-block-placeholder
+                    (resetSearchParams)="resetSearchParams()"
+                ></sw-people-empty-block-placeholder>
+            }
+        }
+        @if (isLoading$ | async) {
+            <tui-loader class="people_loader-overlay" size="xxl" [overlay]="false"> </tui-loader>
         }
     </div>
 
@@ -29,7 +32,7 @@
         class="people_pagination"
         [page]="(page$ | async) || 1"
         [total]="(totalPages$ | async) || 0"
-        [disabled]="(isLoading$ | async)"
+        [disabled]="isLoading$ | async"
         (pageChange)="pageChange($event)"
     ></sw-people-pagination>
 </div>
